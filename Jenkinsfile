@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'TODO: build'
-                sh './mvn clean compile -e'
+                sh './mvnw clean compile -e'
             }
         }
         stage('Test') {
@@ -19,6 +19,9 @@ pipeline {
             }
         }
         stage('Run') {
+            steps {
+                echo 'TODO: run'
+            }
         }
     }
 }
