@@ -11,16 +11,19 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'TODO: test'
+                sh './mvnw.cmd clean test -e'
             }
         }
         stage('Package') {
             steps {
                 echo 'TODO: package'
+                sh './mvnw.cmd clean package -e'           
             }
         }
         stage('Run') {
             steps {
                 echo 'TODO: run'
+                sh './mvnw.cmd spring-boot:run'            
             }
         }
     }
