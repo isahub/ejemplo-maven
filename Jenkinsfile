@@ -23,7 +23,7 @@ pipeline {
         stage('Run') {
             steps {
                 echo 'TODO: run'
-                sh './mvnw spring-boot:run'            
+                sh 'nohup bash ./mvnw spring-boot:run &'            
             }
         }
     }
