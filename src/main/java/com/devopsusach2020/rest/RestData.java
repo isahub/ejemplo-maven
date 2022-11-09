@@ -46,7 +46,8 @@ public class RestData {
 		int death = 0;
 		int recovered = 0;
 		Gson gson = new Gson();
-		Pais estados[] = new Pais();
+		Pais q = new Pais();
+		Pais estados[] = new Pais()[1];
 	if( call.getBody() != null) {
         estados = gson.fromJson(call.getBody().toLowerCase(), Pais[].class);}
 
