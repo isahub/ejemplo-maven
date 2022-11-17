@@ -70,46 +70,11 @@ pipeline {
                 }
             }
         }
-        /*stage("uploadNexus") {
+        stage("uploadNexus") {
             steps {
                 echo 'Uploading to nexus in progress.....'
                 script {
-                    pom = readMavenPom file: "pom.xml";
-                    files = findFiles(glob: "build/*.${pom.packaging}");
-                    echo """${files[0].name},
-                            ${files[0].path},
-                            ${files[0].directory},
-                            ${files[0].length},
-                            ${files[0].lastModified}"""
-                    artifactPath = files[0].path;
-                    artifactExists = fileExists artifactPath;
-                    if(artifactExists) {
-                        echo """File: ${artifactPath},
-                              group: ${pom.groupId},
-                              packaging: ${pom.packaging},
-                              version ${pom.version}"""
-                        nexusPublisher(
-                            nexusInstanceId: NEXUS_INSTANCE_ID,
-                            nexusRepositoryId: NEXUS_REPOSITORY,
-                            packages: [
-                                [
-                                    $class: 'MavenPackage',
-                                    mavenAssetList: [
-                                        [classifier: '',
-                                        extension: '',
-                                        filePath: artifactPath]],
-                                    mavenCoordinate:
-                                        [artifactId: pom.artifactId,
-                                        groupId: pom.groupId,
-                                        packaging: pom.packaging,
-                                        version: pom.version]
-                                 ]
-                            ]
-                        )
-                    echo '.....Artifact Uploaded successfully'
-                    } else {
-                        error "File: ${artifactPath}, could not be found";
-                    }
+                    nexusPublisher nexusInstanceId: 'mxs01', nexusRepositoryId: 'devops-usach-nexus', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: "${WORKSPACE}/build/DevOpsUsach2020-0.0.1.jar"]], mavenCoordinate: [artifactId: 'DevOpsUsach2020', groupId: 'com.devopsusach2020', packaging: 'jar', version: '0.0.1']]]
                 }
             }
         }
@@ -128,6 +93,6 @@ pipeline {
                     }
                 }
             }
-        }*/
+        }
     }
  }
