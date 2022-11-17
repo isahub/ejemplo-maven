@@ -54,7 +54,7 @@ pipeline {
         stage('sonar') {
             steps {
                 echo 'Sonar scan in progress.....'
-                withSonarQubeEnv(credentialsId: 'squ_46605184a019bc1d8ad0843acb5a368c7f8f94d6', installationName: 'sonarqube') {
+                withSonarQubeEnv(credentialsId: 'sonartoken', installationName: 'Sonita') {
                     script {
                         if(isUnix()) {
                             echo 'Unix OS'
@@ -70,7 +70,7 @@ pipeline {
                 }
             }
         }
-        stage("uploadNexus") {
+        /*stage("uploadNexus") {
             steps {
                 echo 'Uploading to nexus in progress.....'
                 script {
@@ -128,6 +128,6 @@ pipeline {
                     }
                 }
             }
-        }
+        }*/
     }
  }
