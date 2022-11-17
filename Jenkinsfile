@@ -54,7 +54,7 @@ pipeline {
         stage('sonar') {
             steps {
                 echo 'Sonar scan in progress.....'
-                withSonarQubeEnv(credentialsId: '22f7a5b8-3425-4d58-a9e9-2326e6749326', installationName: 'sonarqube') {
+                withSonarQubeEnv(credentialsId: 'squ_46605184a019bc1d8ad0843acb5a368c7f8f94d6', installationName: 'sonarqube') {
                     script {
                         if(isUnix()) {
                             echo 'Unix OS'
