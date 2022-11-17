@@ -80,17 +80,9 @@ pipeline {
         }
         stage('download & test') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'acd50057-3abc-4c5b-a062-758a404e0bb9',
-                                                  usernameVariable: 'USER', passwordVariable: 'PASS')]) {
                     script {
-                        echo "Downloading artifact from nexus"
-                        pom = readMavenPom file: "pom.xml";
-                        groupId = pom.groupId;
-                        echo """${pom.groupId}""";
-                        groupIdPath = groupId.replace(".", "/");
-                        echo """${groupIdPath}""";
-                        sh """curl -X GET -u $USER:$PASS http://${env.NEXUS_SERVER}/repository/${env.NEXUS_REPOSITORY}/${groupIdPath}/${pom.artifactId}/${pom.version}/${pom.artifactId}-${pom.version}.${pom.packaging} -O"""
-                    }
+                        sh 'curl -X GET -u admin:admin http://nexus:8081/repository/devops-usach-nexus/com/devopsusach2020/DevOpsUsach2020/0.0.1/DevOpsUsach2020-0.0.1.jar -O'
+                        sh 'ls -ltr'                
                 }
             }
         }
